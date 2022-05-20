@@ -15,10 +15,12 @@ import javax.xml.stream.XMLStreamException;
  * @author dnlbe
  */
 public class ParserFactory {
- 
-     public static XMLEventReader createStaxParser(InputStream stream) throws XMLStreamException {
-         XMLInputFactory factory = XMLInputFactory.newInstance();
-         XMLEventReader eventReader = factory.createXMLEventReader(stream);
-         return eventReader;
+
+    public static XMLEventReader createStaxParser(InputStream inputStream) throws XMLStreamException {
+        XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty("javax.xml.stream.isCoalescing", true);
+        XMLEventReader eventReader = factory.createXMLEventReader(inputStream);        
+        return eventReader;        
     }
+    
 }
